@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+const width = 8;
+const toolColors = ["blue", "green", "orange", "purple", "red", "yellow"];
+
+const App = () => {
+const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
+
+  const createBoard = () => {
+    const randomColorArrangement = [];
+    for (let i = 0; i < width * width; i++) {
+      const randomNumberFrom0To5 = Math.floor(Math.random() * toolColors.length);
+      const randomColor = toolColors[randomNumberFrom0To5];
+      randomColorArrangement.push(randomColor);
+    }
+  };
+
+  createBoard();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div></div>
   );
-}
+};
+
 
 export default App;
