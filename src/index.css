@@ -5,7 +5,7 @@
 
 .game {
   width: 560px;
-  padding: 30px;
+  height: 560px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -13,5 +13,4 @@
 .game img {
   width: 70px;
   height: 70px;
-  border-radius: 10px;
 }
