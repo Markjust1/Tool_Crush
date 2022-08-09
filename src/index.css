@@ -1,16 +1,49 @@
 .app {
   display: flex;
-  padding: 30px;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: -250px;
 }
 
 .game {
+  margin: auto;
   width: 560px;
   height: 560px;
   display: flex;
   flex-wrap: wrap;
 }
 
+.background {
+  display: flex;
+  height: 1000px;
+  width: 1000px;
+  margin: auto;
+  background-image: url("./images/paper.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .game img {
   width: 70px;
   height: 70px;
+}
+
+.scoreboard {
+  display: flex;
+  position: relative;
+  margin-left: 230px;
+  top: 300px;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  background-image: url("./images/portal.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: white;
+  font-size: 4em;
+  text-shadow: -3px 0 rgb(169, 2, 253), 0 1px black, 1px 0 black, 0 -1px black;
 }
