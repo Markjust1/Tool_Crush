@@ -17,6 +17,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
 
+
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -190,6 +191,11 @@ const App = () => {
 
   useEffect(() => {
     createBoard();
+    setTimeout(() => {
+      
+      setScoreDisplay(0)
+
+    }, 1500);
   }, []);
 
   useEffect(() => {
