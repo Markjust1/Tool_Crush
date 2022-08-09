@@ -8,7 +8,7 @@ import red from "./images/red.png";
 import green from "./images/green.png";
 import blank from "./images/blank.png";
 
-const width = 8;
+const width = 6;
 const toolColors = [blue, green, orange, purple, red, yellow];
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
 
 
   const checkForColumnOfFour = () => {
-    for (let i = 0; i <= 39; i++) {
+    for (let i = 0; i <= 17; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
       const decidedColor = currentColorArrangement[i];
       const isBlank = currentColorArrangement[i] === blank;
@@ -40,13 +40,10 @@ const App = () => {
   };
 
   const checkForRowOfFour = () => {
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i < 36; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3];
       const decidedColor = currentColorArrangement[i];
-      const notValid = [
-        5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53,
-        54, 55, 62, 63, 64,
-      ];
+      const notValid = [ 3, 4, 5, 9, 10, 11, 15, 16, 17, 21, 22, 23, 27, 28, 29, 33, 34, 35 ];
       const isBlank = currentColorArrangement[i] === blank;
 
       if (notValid.includes(i)) continue;
@@ -67,7 +64,7 @@ const App = () => {
   };
 
   const checkForColumnOfThree = () => {
-    for (let i = 0; i <= 47; i++) {
+    for (let i = 0; i <= 23; i++) {
       const columnOfThree = [i, i + width, i + width * 2];
       const decidedColor = currentColorArrangement[i];
       const isBlank = currentColorArrangement[i] === blank;
@@ -88,12 +85,10 @@ const App = () => {
   };
 
   const checkForRowOfThree = () => {
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i < 36; i++) {
       const rowOfThree = [i, i + 1, i + 2];
       const decidedColor = currentColorArrangement[i];
-      const notValid = [
-        6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64,
-      ];
+      const notValid = [ 4, 5, 10, 11, 16, 17, 22, 23, 28, 29, 34, 35 ];
       const isBlank = currentColorArrangement[i] === blank;
 
       if (notValid.includes(i)) continue;
@@ -114,8 +109,8 @@ const App = () => {
   };
 
   const moveIntoSquareBelow = () => {
-    for (let i = 0; i <= 55; i++) {
-      const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
+    for (let i = 0; i <= 29; i++) {
+      const firstRow = [0, 1, 2, 3, 4, 5];
       const isFirstRow = firstRow.includes(i);
 
       if (isFirstRow && currentColorArrangement[i] === blank) {
