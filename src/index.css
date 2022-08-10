@@ -1,15 +1,12 @@
 .app {
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-around;
-  padding: 20px;
-  /* margin-top: -500px; */
+  padding: 10px;
   background:rgba(250, 124, 96, 0.654);
-  max-width: 1000px;
+  max-width: 1200px;
   background-image: url("./images/background_main.jpeg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .game {
@@ -23,7 +20,7 @@
 
 .background {
   display: flex;
-  height: 800px;
+  height: 750px;
   width: 900px;
   margin: auto;
   background-image: url("./images/blueprint.gif");
@@ -40,13 +37,12 @@
 .scoreboard {
   display: flex;
   position: relative;
-  margin-left: 7vw;
-  top: 400px;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 200px;
-  background-image: url("./images/paper.png");
+  height: 350px;
+  width: 350px;
+  margin-right: 50px;
+  background-image: url("./images/score.gif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -59,16 +55,15 @@
 .timer {
   display: flex;
   position: relative;
-  margin-left: 7vw;
-  /* top: 300px; */
   justify-content: center;
   align-items: center;
-  height: 550px;
-  width: 250px;
-  /* background-image: url("./images/paper.png");
+  height: 350px;
+  width: 350px;
+  margin-right: 50px;
+  background-image: url("./images/timer.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
   text-align: center;
   color: white;
   font-size: 3em;

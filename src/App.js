@@ -215,10 +215,10 @@ const App = () => {
   return (
     <div className="app">
       <div>
+      <span className="timer"></span>
       <span className="scoreboard">
       { showScore ? <ScoreBoard score={scoreDisplay} /> : null }
       </span>
-      <span className="timer"></span>
       </div>
       <div className="background">
         <div className="game">
