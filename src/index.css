@@ -1,11 +1,19 @@
 .app {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: space-around;
   padding: 20px;
-  margin-top: -250px;
+  /* margin-top: -500px; */
+  background:rgba(250, 124, 96, 0.654);
+  max-width: 1000px;
+  background-image: url("./images/background_main.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .game {
+  padding-bottom: 60px;
   margin: auto;
   width: 420px;
   height: 420px;
@@ -15,10 +23,10 @@
 
 .background {
   display: flex;
-  height: 1000px;
-  width: 1000px;
+  height: 800px;
+  width: 900px;
   margin: auto;
-  background-image: url("./images/paper.png");
+  background-image: url("./images/blueprint.gif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,15 +41,34 @@
   display: flex;
   position: relative;
   margin-left: 7vw;
-  top: 300px;
+  top: 400px;
   justify-content: center;
   align-items: center;
   height: 200px;
   width: 200px;
-  background-image: url("./images/portal.png");
+  background-image: url("./images/paper.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  text-shadow: -3px 0 rgb(169, 2, 253), 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.timer {
+  display: flex;
+  position: relative;
+  margin-left: 7vw;
+  /* top: 300px; */
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  width: 250px;
+  /* background-image: url("./images/paper.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
   text-align: center;
   color: white;
   font-size: 3em;

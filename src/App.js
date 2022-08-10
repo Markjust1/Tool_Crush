@@ -16,6 +16,7 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
+  const [showScore, setShowScore] = useState(false)
 
 
   const checkForColumnOfFour = () => {
@@ -187,9 +188,8 @@ const App = () => {
   useEffect(() => {
     createBoard();
     setTimeout(() => {
-      
       setScoreDisplay(0)
-
+      setShowScore(true)
     }, 1500);
   }, []);
 
@@ -214,9 +214,12 @@ const App = () => {
 
   return (
     <div className="app">
+      <div>
       <span className="scoreboard">
-        <ScoreBoard score={scoreDisplay} />
+      { showScore ? <ScoreBoard score={scoreDisplay} /> : null }
       </span>
+      <span className="timer"></span>
+      </div>
       <div className="background">
         <div className="game">
           {currentColorArrangement.map((Color, index) => (
