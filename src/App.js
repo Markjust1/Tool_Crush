@@ -16,8 +16,8 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
-  const [showScore, setShowScore] = useState(false)
-
+  const [showScore, setShowScore] = useState(false);
+  const [seconds, setSeconds] = useState(30);
 
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 17; i++) {
@@ -44,7 +44,9 @@ const App = () => {
     for (let i = 0; i < 36; i++) {
       const rowOfFour = [i, i + 1, i + 2, i + 3];
       const decidedColor = currentColorArrangement[i];
-      const notValid = [ 3, 4, 5, 9, 10, 11, 15, 16, 17, 21, 22, 23, 27, 28, 29, 33, 34, 35 ];
+      const notValid = [
+        3, 4, 5, 9, 10, 11, 15, 16, 17, 21, 22, 23, 27, 28, 29, 33, 34, 35,
+      ];
       const isBlank = currentColorArrangement[i] === blank;
 
       if (notValid.includes(i)) continue;
@@ -89,7 +91,7 @@ const App = () => {
     for (let i = 0; i < 36; i++) {
       const rowOfThree = [i, i + 1, i + 2];
       const decidedColor = currentColorArrangement[i];
-      const notValid = [ 4, 5, 10, 11, 16, 17, 22, 23, 28, 29, 34, 35 ];
+      const notValid = [4, 5, 10, 11, 16, 17, 22, 23, 28, 29, 34, 35];
       const isBlank = currentColorArrangement[i] === blank;
 
       if (notValid.includes(i)) continue;
@@ -188,10 +190,18 @@ const App = () => {
   useEffect(() => {
     createBoard();
     setTimeout(() => {
-      setScoreDisplay(0)
-      setShowScore(true)
+      setScoreDisplay(0);
+      setShowScore(true);
     }, 1500);
   }, []);
+
+  useEffect(() => {
+    if (seconds > 0 && showScore === true) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    } else if (seconds === 0) {
+      setSeconds("0");
+    }
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -213,32 +223,42 @@ const App = () => {
   ]);
 
   return (
-    <div className="app">
-      <div>
-      <span className="timer"></span>
-      <span className="scoreboard">
-      { showScore ? <ScoreBoard score={scoreDisplay} /> : null }
-      </span>
-      </div>
-      <div className="background">
-        <div className="game">
-          {currentColorArrangement.map((Color, index) => (
-            <img
-              key={index}
-              src={Color}
-              alt={Color}
-              data-id={index}
-              draggable={true}
-              onDragStart={dragStart}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnter={(e) => e.preventDefault()}
-              onDragLeave={(e) => e.preventDefault()}
-              onDrop={dragDrop}
-              onDragEnd={dragEnd}
-            />
-          ))}
+    <div>
+      {seconds > 0 ? (
+        <div className="app">
+          <div>
+            <span className="timer">{seconds}</span>
+            <span className="scoreboard">
+              {showScore ? <ScoreBoard score={scoreDisplay} /> : null}
+            </span>
+          </div>
+          <div className="background">
+            <div className="game">
+              {currentColorArrangement.map((Color, index) => (
+                <img
+                  key={index}
+                  src={Color}
+                  alt={Color}
+                  data-id={index}
+                  draggable={true}
+                  onDragStart={dragStart}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDragEnter={(e) => e.preventDefault()}
+                  onDragLeave={(e) => e.preventDefault()}
+                  onDrop={dragDrop}
+                  onDragEnd={dragEnd}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="app">
+          <div className="gameover">
+            <div className="gameover-score">{scoreDisplay}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
