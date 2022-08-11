@@ -273,7 +273,7 @@ const App = () => {
                   onDrop={dragDrop}
                   onDragEnd={dragEnd}
                   checked={isChecked}
-                  onDragLeaveCapture={coinSound}
+                  onDragEndCapture={coinSound}
                   // onDragOverCapture={playActive}
                 />
               ))}
