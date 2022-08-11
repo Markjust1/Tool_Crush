@@ -6,6 +6,17 @@
 
 After cloning the repo, inside a game folder, run ```npm install``` and then ```npm start``` to run the game.
 
+--------------------------------------------------------------------------------
+To start the game click on the START button:
+
 !["Start"](./public/gamestart.gif)
+
+--------------------------------------------------------------------------------
+Actual gameplay:
+
 !["Gameplay"](./public/gameplay.gif)
-!["Finish"](./public/gameover.gif)
+
+--------------------------------------------------------------------------------
+When the time is up player sees the 'game over' screen:
+
+!["Finish"](./public/gamefinish.gif)
