@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-// import useSound from 'use-sound';
+import useSound from 'use-sound';
+import game from './sounds/game.mp3';
+import success from './sounds/success.wav';
+import coin from './sounds/coin.mp3';
 import ScoreBoard from "./components/ScoreBoard";
 import purple from "./images/purple.png";
 import orange from "./images/orange.png";
@@ -18,7 +21,20 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [seconds, setSeconds] = useState(1);
+  const [seconds, setSeconds] = useState(30);
+  const [isChecked, setIsChecked] = useState(true);
+
+  const [playActive] = useSound(game,
+    { volume: 0.25 }
+  );
+
+  const [gameOver] = useSound(success,
+    { volume: 0.35 }
+  );
+
+  const [coinSound] = useSound(coin,
+    { volume: 0.25 }
+  );
 
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 17; i++) {
@@ -201,8 +217,16 @@ const App = () => {
       setTimeout(() => setSeconds(seconds - 1), 1000);
     } else if (seconds === 0) {
       setSeconds("0");
+      setIsChecked(false);
     }
   });
+
+  useEffect(() => {
+    const play = () => {
+      return coinSound
+    }
+  }, []);
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -248,6 +272,9 @@ const App = () => {
                   onDragLeave={(e) => e.preventDefault()}
                   onDrop={dragDrop}
                   onDragEnd={dragEnd}
+                  checked={isChecked}
+                  onDragLeaveCapture={coinSound}
+                  // onDragOverCapture={playActive}
                 />
               ))}
             </div>
@@ -255,7 +282,7 @@ const App = () => {
         </div>
       ) : (
         <div className="app">
-          <div className="gameover">
+          <div className="gameover"  onAnimationStart={gameOver}>
             <div className="gameover-score">{scoreDisplay}</div>
           </div>
         </div>
