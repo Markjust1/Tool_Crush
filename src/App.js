@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useSound from 'use-sound';
+// import useSound from 'use-sound';
 import ScoreBoard from "./components/ScoreBoard";
 import purple from "./images/purple.png";
 import orange from "./images/orange.png";
@@ -18,7 +18,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(1);
 
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 17; i++) {
