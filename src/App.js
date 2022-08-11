@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useSound from 'use-sound';
 import ScoreBoard from "./components/ScoreBoard";
 import purple from "./images/purple.png";
 import orange from "./images/orange.png";
