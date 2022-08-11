@@ -23,7 +23,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(30);
   const [isChecked, setIsChecked] = useState(true);
 
   const [playActive] = useSound(game, { volume: 0.25 });
@@ -33,8 +33,8 @@ const App = () => {
   const [coinSound] = useSound(coin, { volume: 0.25 });
 
   const startGame = () => {
-    setSeconds(5)
-    return setStart(true);
+    setSeconds(30);
+    setStart(true);
   };
 
   const refreshPage = () => {
@@ -228,6 +228,12 @@ const App = () => {
     }
   });
 
+  // useEffect(() => {
+  //   startGame();
+  // }, [startGame]);
+
+
+
   useEffect(() => {
     const timer = setInterval(() => {
       checkForColumnOfFour();
@@ -251,8 +257,9 @@ const App = () => {
     <div>
 
       {seconds > 0 && start === false && (
-        <div className="app">
-          <div className="start" onClick={startGame}>
+        <div>
+          <div className="back">
+            <div className="start" onClick={startGame}></div>
           </div>
         </div>
       )}
