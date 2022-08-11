@@ -127,3 +127,14 @@ to   { opacity: 1; }
   font-size: 6em;
   text-shadow: -3px 0 rgb(60, 60, 60), 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+.start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 800px;
+  background-image: url("./images/start.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}

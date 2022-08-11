@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useSound from 'use-sound';
-import game from './sounds/game.mp3';
-import success from './sounds/success.wav';
-import coin from './sounds/coin.mp3';
+import useSound from "use-sound";
+import game from "./sounds/game.mp3";
+import success from "./sounds/success.wav";
+import coin from "./sounds/coin.mp3";
 import ScoreBoard from "./components/ScoreBoard";
 import purple from "./images/purple.png";
 import orange from "./images/orange.png";
@@ -16,25 +16,31 @@ const width = 6;
 const toolColors = [blue, green, orange, purple, red, yellow];
 
 const App = () => {
+  const [start, setStart] = useState(false);
+  const [finish, setFinish] = useState(false);
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(5);
   const [isChecked, setIsChecked] = useState(true);
 
-  const [playActive] = useSound(game,
-    { volume: 0.25 }
-  );
+  const [playActive] = useSound(game, { volume: 0.25 });
 
-  const [gameOver] = useSound(success,
-    { volume: 0.35 }
-  );
+  const [gameOver] = useSound(success, { volume: 0.35 });
 
-  const [coinSound] = useSound(coin,
-    { volume: 0.25 }
-  );
+  const [coinSound] = useSound(coin, { volume: 0.25 });
+
+  const startGame = () => {
+    setSeconds(5)
+    return setStart(true);
+  };
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  }
+
 
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 17; i++) {
@@ -218,15 +224,9 @@ const App = () => {
     } else if (seconds === 0) {
       setSeconds("0");
       setIsChecked(false);
+      setFinish(true);
     }
   });
-
-  useEffect(() => {
-    const play = () => {
-      return coinSound
-    }
-  }, []);
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -249,7 +249,15 @@ const App = () => {
 
   return (
     <div>
-      {seconds > 0 ? (
+
+      {seconds > 0 && start === false && (
+        <div className="app">
+          <div className="start" onClick={startGame}>
+          </div>
+        </div>
+      )}
+
+      {seconds > 0 && start === true && (
         <div className="app">
           <div>
             <span className="timer">{seconds}</span>
@@ -274,15 +282,15 @@ const App = () => {
                   onDragEnd={dragEnd}
                   checked={isChecked}
                   onDragEndCapture={coinSound}
-                  // onDragOverCapture={playActive}
                 />
               ))}
             </div>
           </div>
         </div>
-      ) : (
+      )}
+      { finish === true && (
         <div className="app">
-          <div className="gameover"  onAnimationStart={gameOver}>
+          <div className="gameover" onAnimationStart={gameOver} onClick={refreshPage}>
             <div className="gameover-score">{scoreDisplay}</div>
           </div>
         </div>
