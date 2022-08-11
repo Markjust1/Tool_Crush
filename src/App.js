@@ -23,7 +23,7 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(1);
   const [isChecked, setIsChecked] = useState(true);
 
   const [playActive] = useSound(game, { volume: 0.25 });
@@ -33,7 +33,7 @@ const App = () => {
   const [coinSound] = useSound(coin, { volume: 0.25 });
 
   const startGame = () => {
-    setSeconds(30);
+    setSeconds(1);
     setStart(true);
   };
 
