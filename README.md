@@ -6,6 +6,6 @@
 
 After cloning the repo, inside a game folder, run ```npm install``` and then ```npm start``` to run the game.
 
-!["Start"](./public/gamestart.png)
+!["Start"](./public/gamestart.gif)
 !["Gameplay"](./public/gameplay.gif)
-!["Finish"](./public/gameover.png)
+!["Finish"](./public/gameover.gif)
