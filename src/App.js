@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useSound from "use-sound";
-import game from "./sounds/game.mp3";
+import game from "./sounds/game.wav";
 import success from "./sounds/success.wav";
 import coin from "./sounds/coin.mp3";
+import timerTick from "./sounds/timer.mp3";
 import ScoreBoard from "./components/ScoreBoard";
 import purple from "./images/purple.png";
 import orange from "./images/orange.png";
@@ -26,14 +27,14 @@ const App = () => {
   const [seconds, setSeconds] = useState(30);
   const [isChecked, setIsChecked] = useState(true);
 
-  const [playActive] = useSound(game, { volume: 0.25 });
+  const [playActive] = useSound(game, { volume: 0.35 });
 
   const [gameOver] = useSound(success, { volume: 0.35 });
 
   const [coinSound] = useSound(coin, { volume: 0.25 });
+  const [countdown] = useSound(timerTick, { volume: 0.25 });
 
   const startGame = () => {
-    setSeconds(30);
     setStart(true);
   };
 
@@ -219,18 +220,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (seconds > 0 && showScore === true) {
+    if (seconds > 0 && showScore === true && start === true) {
       setTimeout(() => setSeconds(seconds - 1), 1000);
     } else if (seconds === 0) {
       setSeconds("0");
       setIsChecked(false);
       setFinish(true);
+      setStart(false)
     }
   });
-
-  // useEffect(() => {
-  //   startGame();
-  // }, [startGame]);
 
 
 
@@ -252,6 +250,26 @@ const App = () => {
     moveIntoSquareBelow,
     currentColorArrangement,
   ]);
+
+  useEffect(() => {
+    coinSound();
+},[scoreDisplay]);
+
+  useEffect(() => {
+    if (seconds === 7) {
+      countdown();
+    }
+}, [seconds])
+
+  useEffect(() => {
+    if (start === true && finish === false) {
+      playActive();
+    } else if (start === false && finish === true) {
+      gameOver();
+    }
+},[start, finish])
+
+
 
   return (
     <div>
@@ -288,7 +306,7 @@ const App = () => {
                   onDrop={dragDrop}
                   onDragEnd={dragEnd}
                   checked={isChecked}
-                  onDragEndCapture={coinSound}
+                  // onDragEndCapture={coinSound}
                 />
               ))}
             </div>
@@ -297,7 +315,7 @@ const App = () => {
       )}
       { finish === true && (
         <div className="app">
-          <div className="gameover" onAnimationStart={gameOver} onClick={refreshPage}>
+          <div className="gameover"  onClick={refreshPage}>
             <div className="gameover-score">{scoreDisplay}</div>
           </div>
         </div>
